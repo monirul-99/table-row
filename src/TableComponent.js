@@ -4,7 +4,7 @@ import TableRow from "./TableRow";
 
 const TableComponent = ({ data, column }) => {
   return (
-    <table className="border-collapse border">
+    <table className="border-collapse border table table-zebra">
       <thead>
         <tr>
           {column?.map((item, inx) => (
