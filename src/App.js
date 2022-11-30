@@ -4,8 +4,6 @@ import TableComponent from "./TableComponent";
 
 function App() {
   const [tableData, setTableData] = useState([]);
-
-  console.log(tableData);
   useEffect(() => {
     axios("tableTestData.json")
       .then((res) => setTableData(res.data))
@@ -13,7 +11,7 @@ function App() {
   }, []);
 
   const column = [
-    { heading: "Name", value: "person.name" },
+    { heading: "Name", value: "person.name.avatar" },
     { heading: "Location", value: "city" },
     { heading: "E-mail", value: "email" },
     { heading: "Joining Date", value: "joiningDate" },

@@ -6,16 +6,22 @@ const TableRow = ({ item, column }) => {
       {column?.map((columnItems, inx) => {
         if (columnItems.value.includes(".")) {
           const itemsSplit = columnItems.value.split(".");
+          console.log(columnItems);
           return (
-            <td className="border w-[175px] h-[40px]">
-              <p className="ml-[10px]">{item[itemsSplit[0]][itemsSplit[1]]}</p>
+            <td key={inx} className="border w-[175px] h-[40px]">
+              <aside className="flex items-center">
+                <img src={item[itemsSplit[0]][itemsSplit[2]]} alt="" />
+                <p className="ml-[10px]">
+                  {item[itemsSplit[0]][itemsSplit[1]]}
+                </p>
+              </aside>
             </td>
           );
         }
         if (columnItems.value.includes("email")) {
           const itemsSplit = columnItems.value;
           return (
-            <td className="border w-[220px] h-[40px]">
+            <td key={inx} className="border w-[220px] h-[40px]">
               <p className="ml-[10px] text-[#0071CC] underline">
                 {item[`${itemsSplit}`]}
               </p>
@@ -23,7 +29,7 @@ const TableRow = ({ item, column }) => {
           );
         }
         return (
-          <td className="border w-[175px] h-[40px]" key={inx}>
+          <td key={inx} className="border w-[175px] h-[40px]">
             <p className="ml-[10px]">{item[`${columnItems.value}`]}</p>
           </td>
         );
