@@ -20,7 +20,7 @@ function App() {
     { heading: "Role", value: "role" },
   ];
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full h-screen flex justify-center items-center font-Sans">
       <TableComponent data={tableData} column={column} />
     </div>
   );
