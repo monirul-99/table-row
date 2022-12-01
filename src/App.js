@@ -1,25 +1,44 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import React from "react";
+import tableDataMain from "./tableTestData.json";
 import TableComponent from "./TableComponent";
+import { useSortableTable } from "./useSortableTable";
 
 function App() {
-  const [tableData, setTableData] = useState([]);
-  useEffect(() => {
-    axios("tableTestData.json")
-      .then((res) => setTableData(res.data))
-      .catch((error) => console.log(error));
-  }, []);
+  const [tableData, handleSorting] = useSortableTable(tableDataMain);
 
   const column = [
-    { heading: "Name", value: "person.name.avatar" },
-    { heading: "Location", value: "city" },
-    { heading: "E-mail", value: "email" },
-    { heading: "Joining Date", value: "joiningDate" },
-    { heading: "Role", value: "role" },
+    { label: "Name", accessor: "person.name.avatar", sortable: false },
+    { label: "Location", accessor: "city", sortable: true },
+    { label: "E-mail", accessor: "email", sortable: false },
+    { label: "Joining Date", accessor: "joiningDate", sortable: true },
+    { label: "Role", accessor: "role", sortable: false },
+  ];
+  const columnTwo = [
+    { label: "Location", accessor: "city", sortable: true },
+    { label: "Role", accessor: "role", sortable: true },
+  ];
+  const columnThree = [
+    { label: "Location", accessor: "city", sortable: false },
+    { label: "E-mail", accessor: "email", sortable: false },
+    { label: "Role", accessor: "role", sortable: true },
   ];
   return (
-    <div className="w-full h-screen flex justify-center items-center font-Sans">
-      <TableComponent data={tableData} column={column} />
+    <div className="w-full py-16 flex flex-col gap-12 justify-center items-center font-Sans">
+      <TableComponent
+        column={column}
+        tableData={tableData}
+        handleSorting={handleSorting}
+      />
+      <TableComponent
+        column={columnTwo}
+        tableData={tableData}
+        handleSorting={handleSorting}
+      />
+      <TableComponent
+        column={columnThree}
+        tableData={tableData}
+        handleSorting={handleSorting}
+      />
     </div>
   );
 }

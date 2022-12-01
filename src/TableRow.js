@@ -1,40 +1,39 @@
 import React from "react";
 
-const TableRow = ({ item, column }) => {
+const TableRow = ({ tableData, column }) => {
   return (
-    <tr className="text-[14px]">
-      {column?.map((columnItems, inx) => {
-        if (columnItems.value.includes(".")) {
-          const itemsSplit = columnItems.value.split(".");
-          console.log(columnItems);
-          return (
-            <td key={inx} className="border w-[175px] h-[40px]">
-              <aside className="flex items-center">
-                <img src={item[itemsSplit[0]][itemsSplit[2]]} alt="" />
-                <p className="ml-[10px]">
-                  {item[itemsSplit[0]][itemsSplit[1]]}
-                </p>
-              </aside>
-            </td>
-          );
-        }
-        if (columnItems.value.includes("email")) {
-          const itemsSplit = columnItems.value;
-          return (
-            <td key={inx} className="border w-[220px] h-[40px]">
-              <p className="ml-[10px] text-[#0071CC] underline">
-                {item[`${itemsSplit}`]}
-              </p>
-            </td>
-          );
-        }
+    <tbody>
+      {tableData.map((data) => {
         return (
-          <td key={inx} className="border w-[175px] h-[40px]">
-            <p className="ml-[10px]">{item[`${columnItems.value}`]}</p>
-          </td>
+          <tr key={data.id} className="text-[14px]">
+            {column.map(({ accessor }, inx) => {
+              if (accessor.includes(".")) {
+                const itemsSplit = accessor.split(".");
+                // console.log("Split", itemsSplit);
+                return (
+                  <td key={inx} className="border w-[175px] h-[40px]">
+                    <aside className="flex items-center">
+                      <img src={data[itemsSplit[0]][itemsSplit[2]]} alt="" />
+                      <p className="ml-[10px]">
+                        {data[itemsSplit[0]][itemsSplit[1]]}
+                      </p>
+                    </aside>
+                  </td>
+                );
+              }
+
+              const tData = data[accessor] ? data[accessor] : "——";
+
+              return (
+                <td className="border w-[175px] h-[40px]" key={inx}>
+                  {tData}
+                </td>
+              );
+            })}
+          </tr>
         );
       })}
-    </tr>
+    </tbody>
   );
 };
 
