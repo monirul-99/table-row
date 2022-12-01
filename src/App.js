@@ -7,19 +7,19 @@ function App() {
   const [tableData, handleSorting] = useSortableTable(tableDataMain);
 
   const column = [
-    { label: "Name", accessor: "person.name.avatar", sortable: false },
+    { label: "Name", accessor: "person.name.avatar", sortable: true },
     { label: "Location", accessor: "city", sortable: true },
-    { label: "E-mail", accessor: "email", sortable: false },
+    { label: "E-mail", accessor: "email", sortable: true },
     { label: "Joining Date", accessor: "joiningDate", sortable: true },
-    { label: "Role", accessor: "role", sortable: false },
+    { label: "Role", accessor: "role", sortable: true },
   ];
   const columnTwo = [
     { label: "Location", accessor: "city", sortable: true },
     { label: "Role", accessor: "role", sortable: true },
   ];
   const columnThree = [
-    { label: "Location", accessor: "city", sortable: false },
-    { label: "E-mail", accessor: "email", sortable: false },
+    { label: "Location", accessor: "city", sortable: true },
+    { label: "E-mail", accessor: "email", sortable: true },
     { label: "Role", accessor: "role", sortable: true },
   ];
   return (
